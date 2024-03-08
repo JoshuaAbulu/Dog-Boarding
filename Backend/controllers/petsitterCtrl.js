@@ -152,26 +152,26 @@ const updatedUser = asyncHandler(async (req, res) => {
   }
 });
 
- // Get all users
+ // Get all petsitters
 
-const getallUser = asyncHandler(async (req, res) => {
+const getallPetsitter = asyncHandler(async (req, res) => {
   try {
-    const getUsers = await User.find();
-    res.json(getUsers);
+    const getPetsitters = await Petsitter.find();
+    res.json(getPetsitters);
   } catch (error) {
     throw new Error(error);
   }
 });
 
-// Get a single user
+// Get a single petsitter
 
-const getaUser = asyncHandler(async (req, res) => {
+const getaPetsitter = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const getaUser = await User.findById(id);
+    const getaPetsitter = await Petsitter.findById(id);
     res.json({
-      getaUser,
+      getaPetsitter,
     });
   } catch (error) {
     throw new Error(error);
@@ -239,8 +239,8 @@ const unblockUser = asyncHandler(async (req, res) => {
 module.exports = { 
   createPetsitter, 
   loginPetsitterCtrl, 
-  getallUser, 
-  getaUser, 
+  getallPetsitter, 
+  getaPetsitter, 
   deleteaUser, 
   updatedUser,
   blockUser,
