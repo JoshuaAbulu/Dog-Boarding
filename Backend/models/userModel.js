@@ -25,18 +25,24 @@ var userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     role: {
         type: String,
-        default: "user",
+        default: "petsitter",
     },
     isBlocked: {
         type:Boolean,
         default: false,
     },
-    /**cart: {
-        type: Array,
-        default: [],
-    },*/
+    images: [
+        {
+          public_id: String,
+          url: String,
+        },
+    ],
     address: {
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Address" }],
     },

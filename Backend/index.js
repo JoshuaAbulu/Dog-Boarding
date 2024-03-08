@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 6000;
 const authRouter = require("./routes/authRoute");
+const petsitterRouter = require("./routes/petsitterRoute");
 const cookieParser = require("cookie-parser");
 dbConnect();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/api/user', authRouter);
+app.use('/api/petsitter', petsitterRouter);
 app.use(notFound);
 app.use(errorHandler);
 
