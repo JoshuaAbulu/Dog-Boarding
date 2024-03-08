@@ -70,13 +70,13 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) throw new Error("No Refresh Token in Cookies");
   const refreshToken = cookie.refreshToken;
-  const user = await User.findOne({ refreshToken });
+  const petsitter = await Petsitter.findOne({ refreshToken });
   if (!user) throw new Error(" No Refresh token present in db or not matched");
   verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
-    if (err || user.id !== decoded.id) {
+    if (err || petsitter.id !== decoded.id) {
       throw new Error("There is something wrong with refresh token");
     }
-    const accessToken = generateToken(user?._id);
+    const accessToken = generateToken(petsitter?._id);
     res.json({ accessToken });
   });
 });
@@ -112,39 +112,39 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 
-// Update a user
+// Update a petsitter
 
-const updatedUser = asyncHandler(async (req, res) => {
+const updatedPetsitter = asyncHandler(async (req, res) => {
   // Ensure req.user is defined and has _id property
-  if (!req.user || !req.user._id) {
+  if (!req.petsitter || !req.petsitter._id) {
     return res.status(400).json({ error: 'Invalid user information in the request.' });
   }
 
-  const { _id } = req.user;
+  const { _id } = req.petsitter;
   validateMongoDbId(_id);
 
   try {
     // Check if req.body exists before accessing its properties
-    const updatedUserData = {
+    const updatedPetsitterData = {
       ...(req.body.firstname && { firstname: req.body.firstname }),
       ...(req.body.lastname && { lastname: req.body.lastname }),
       ...(req.body.email && { email: req.body.email }),
       ...(req.body.mobile && { mobile: req.body.mobile }),
     };
 
-    const updatedUser = await User.findByIdAndUpdate(
+    const updatedPetsitter = await Petsitter.findByIdAndUpdate(
       _id,
-      updatedUserData,
+      updatedPetsitterData,
       {
         new: true,
       }
     );
 
-    if (!updatedUser) {
-      return res.status(404).json({ error: 'User not found' });
+    if (!updatedPetsitter) {
+      return res.status(404).json({ error: 'Petsitter not found' });
     }
 
-    res.json(updatedUser);
+    res.json(updatedPetsitter);
   } catch (error) {
     // Handle specific errors and send an appropriate response
     console.error(error);
@@ -178,27 +178,27 @@ const getaPetsitter = asyncHandler(async (req, res) => {
   }
 });
  
-// Delete a user
+// Delete a Petsitter
 
-const deleteaUser = asyncHandler(async (req, res) => {
+const deleteaPetsitter = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
 
   try {
-    const deleteaUser = await User.findByIdAndDelete(id);
+    const deleteaPetsitter = await Petsitter.findByIdAndDelete(id);
     res.json({
-      deleteaUser,
+      deleteaPetsitter,
     });
   } catch (error) {
     throw new Error(error);
   }
 });
 
-const blockUser = asyncHandler(async (req, res) => {
+const blockPetsitter = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const block = await User.findByIdAndUpdate(
+    const block = await Petsitter.findByIdAndUpdate(
       id,
       {
         isBlocked: true,
@@ -208,17 +208,17 @@ const blockUser = asyncHandler(async (req, res) => {
       }
     );
     res.json({
-      message: "User Blocked",
+      message: "Petsitter Blocked",
     });
   } catch (error) {
     throw new Error(error);
   } 
 });
-const unblockUser = asyncHandler(async (req, res) => {
+const unblockPetsitter = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const unblock = await User.findByIdAndUpdate(
+    const unblock = await Petsitter.findByIdAndUpdate(
       id,
       {
         isBlocked: false,
@@ -228,7 +228,7 @@ const unblockUser = asyncHandler(async (req, res) => {
       }
     );
     res.json({
-      message: "User unBlocked",
+      message: "Petsitter unBlocked",
     });
   } catch (error) {
     throw new Error(error);
@@ -241,10 +241,10 @@ module.exports = {
   loginPetsitterCtrl, 
   getallPetsitter, 
   getaPetsitter, 
-  deleteaUser, 
-  updatedUser,
-  blockUser,
-  unblockUser,
+  deleteaPetsitter, 
+  updatedPetsitter,
+  blockPetsitter,
+  unblockPetsitter,
   handleRefreshToken,
   logout,
  };

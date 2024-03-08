@@ -4,10 +4,10 @@ const {
   loginPetsitterCtrl, 
   getallPetsitter, 
   getaPetsitter, 
-  deleteaUser, 
-  updatedUser,
-  blockUser,
-  unblockUser,
+  deleteaPetsitter, 
+  updatedPetsitter,
+  blockPetsitter,
+  unblockPetsitter,
   handleRefreshToken,
   logout,
 } = require("../controllers/petsitterCtrl");
@@ -15,13 +15,13 @@ const {petsitterauthMiddleware, IsAdmin} = require("../middlewares/petsitterauth
 const router = express.Router();
 router.post("/register", createPetsitter);
 router.post("/login", loginPetsitterCtrl);
-router.put("/edit-user", petsitterauthMiddleware, updatedUser);
+router.put("/edit-user", petsitterauthMiddleware, updatedPetsitter);
 router.get("/refresh", handleRefreshToken);
 router.get("/logout", logout);
-router.put("/block-user/:id", petsitterauthMiddleware, IsAdmin, blockUser);
-router.put("/unblock-user/:id", petsitterauthMiddleware, IsAdmin, unblockUser);
+router.put("/block-user/:id", petsitterauthMiddleware, IsAdmin, blockPetsitter);
+router.put("/unblock-user/:id", petsitterauthMiddleware, IsAdmin, unblockPetsitter);
 router.get("/all-petsitters", getallPetsitter);
 router.get("/:id", petsitterauthMiddleware, IsAdmin, getaPetsitter); 
-router.delete("/:id", deleteaUser);
+router.delete("/:id", deleteaPetsitter);
 
 module.exports = router;
