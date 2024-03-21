@@ -19,7 +19,7 @@ export const DogAdditionalInfo = () => {
 
   const handleNext = async () => {
     try {
-      await axios.post('http://localhost:5000/profile', formData);
+      await axios.post('', formData);
       console.log(formData)
     alert("Successful");
     } catch (error) {

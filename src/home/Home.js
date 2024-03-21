@@ -47,7 +47,7 @@ export const Home = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('http://localhost:5000/profile', formData);
+      await axios.post('', formData);
       navigate('/success');
     } catch (error) {
       console.error('Error submitting form:', error);
