@@ -1,32 +1,28 @@
 import React from "react";
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./components/home/Home";
-import { NavBar } from "./components/navbar/NavBar";
-import { Login } from "./components/auth/Login";
-import { SignUp } from "./components/auth/SignUp";
-import { Booking } from "./components/dashboard/Booking";
-import { Profile } from "./components/dashboard/Profile";
-import { PetOwner } from "./components/auth/pet-owner/PetOwner";
-import { PetSitter } from "./components/auth/pet-sitter/PetSitter";
+import { DogDataProvider } from "./context/DogDataContext";
+import {DogRegistration} from "./pages/dogInfoPage/DogRegistration";
+import DogInfo from "./pages/dogInfoPage/DogInfo";
+import {DogInfoScreen} from "./pages/dogInfoPage/DogInfoScreen";
+import {DogAdditionalInfo} from "./pages/dogInfoPage/AdditionalInfo";
+import SignUpForm from "./auth/signUp/SignUpForm";
+import LoginPage from "./auth/Login/Login";
 
-function App() {
+const App = () => {
   return (
-    <div className="container">
-      <Router>
-        <NavBar />
+    <Router>
+      <DogDataProvider>
         <Routes>
-        <Route path="/" element={<Home />} /> 
-         <Route path="/login" element={<Login />} /> 
-         <Route path="/signup" element={<SignUp />} /> 
-         <Route path="/booking" element={<Booking />} /> 
-         <Route path="/profile" element={<Profile />} /> 
-         <Route path="/pet-owner" element={<PetOwner />} /> 
-         <Route path="/pet-sitter" element={<PetSitter />} /> 
+        <Route path="/" element={<SignUpForm />} />
+        <Route path="/login" element={<LoginPage />} />
+          <Route path="/home" element={<DogRegistration />} />
+          <Route path="/dog-info" element={<DogInfo />} />
+          <Route path="/dog-info-screen" element={<DogInfoScreen />} />
+          <Route path="/additional-info" element={<DogAdditionalInfo />} />
         </Routes>
-      </Router>
-    </div>
+      </DogDataProvider>
+    </Router>
   );
-}
+};
 
 export default App;
