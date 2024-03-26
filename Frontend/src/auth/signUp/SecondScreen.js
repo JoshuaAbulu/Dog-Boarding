@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+// import {useNavigate} from "react-router-dom"
+import { useRegistrationData } from "../../context/RegistrationContext";
 
 const schema = yup.object().shape({
   address: yup.string().required("Address is required"),
@@ -17,7 +19,10 @@ const schema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
-const SecondScreen = ({ onSubmit }) => {
+const SecondScreen = () => {
+  // const navigate = useNavigate()
+  const { registrationData, updateRegistrationData } = useRegistrationData();
+
   const {
     register,
     handleSubmit,
@@ -27,7 +32,18 @@ const SecondScreen = ({ onSubmit }) => {
   });
 
   const handleFormSubmit = (data) => {
-    onSubmit(data);
+    updateRegistrationData(data); 
+    submitRegistrationData(); 
+  };
+  
+
+  const submitRegistrationData = async () => {
+    try {
+      console.log("Submitting registration data:", registrationData);
+      // navigate("/dog-registration")
+    } catch (error) {
+      console.error("Error submitting registration data:", error);
+    }
   };
 
   return (

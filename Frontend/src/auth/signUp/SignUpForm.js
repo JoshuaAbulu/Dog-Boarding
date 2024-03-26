@@ -1,12 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Select from "react-select";
-import axios from "axios";
 import countryCodes from "../../services/countryCodes";
 import SecondScreen from "./SecondScreen";
-import { useNavigate } from "react-router-dom";
+import { useRegistrationData } from "../../context/RegistrationContext";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required"),
@@ -19,7 +18,8 @@ const schema = yup.object().shape({
 });
 
 const SignUpForm = () => {
-  const navigate = useNavigate();
+  const [showSecondScreen, setShowSecondScreen] = useState(false);
+  const { registrationData, updateRegistrationData } = useRegistrationData();
 
   const {
     register,
@@ -29,32 +29,17 @@ const SignUpForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const [formData, setFormData] = useState({});
-  const [showSecondScreen, setShowSecondScreen] = useState(false);
-
-  const onSubmitFirstScreen = async (data) => {
-    setFormData(data);
+  const onSubmit = (data) => {
+    updateRegistrationData(data);
     setShowSecondScreen(true);
-  };
-
-  const onSubmitSecondScreen = async (dataFromSecondScreen) => {
-    const mergedData = { ...formData, ...dataFromSecondScreen };
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/register",
-        mergedData
-      );
-      navigate("/login");
-      console.log(response);
-    } catch (error) {
-      console.error("Signup failed:", error);
-    }
+    console.log(registrationData);
   };
 
   return (
     <div>
+      <h2>Sign Up</h2>
       {!showSecondScreen ? (
-        <form onSubmit={handleSubmit(onSubmitFirstScreen)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register("fullName")} placeholder="Full Name" />
           {errors.fullName && <p>{errors.fullName.message}</p>}
 
@@ -73,11 +58,9 @@ const SignUpForm = () => {
           <button type="submit">Continue</button>
         </form>
       ) : (
-        <SecondScreen onSubmit={onSubmitSecondScreen} />
+        <SecondScreen />
       )}
-
       <hr />
-
       <button>Sign Up with Facebook</button>
       <button>Sign Up with Google</button>
 

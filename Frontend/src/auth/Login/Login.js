@@ -36,7 +36,7 @@ const LoginPage = () => {
       const token = response.token;
 
       localStorage.setItem("token", token);
-      navigate("/home");
+      navigate("/dog-registration");
       console.log(data);
     } catch (error) {
       console.log("Invalid email or password");

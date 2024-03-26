@@ -1,9 +1,11 @@
 import React from "react";
-import axios from 'axios'
+// import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useDogData } from "../../context/DogDataContext";
 
 export const DogAdditionalInfo = () => {
   const { formData, setFormData } = useDogData();
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -15,17 +17,15 @@ export const DogAdditionalInfo = () => {
       },
     }));
   };
-  
 
   const handleNext = async () => {
     try {
-      await axios.post('', formData);
-      console.log(formData)
-    alert("Successful");
+      // await axios.post("", formData);
+      console.log(formData);
+      navigate("/details-page");
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     }
-    
   };
 
   return (
@@ -37,7 +37,7 @@ export const DogAdditionalInfo = () => {
           <input
             type="checkbox"
             name="dogSitting"
-            checked={formData.services.dogSitting}
+            checked={formData.services && formData.services.dogSitting}
             onChange={handleCheckboxChange}
           />
           Dog sitting
@@ -48,7 +48,7 @@ export const DogAdditionalInfo = () => {
           <input
             type="checkbox"
             name="dogWalking"
-            checked={formData.services.dogWalking}
+            checked={formData.services && formData.services.dogWalking}
             onChange={handleCheckboxChange}
           />
           Dog walking
@@ -59,7 +59,7 @@ export const DogAdditionalInfo = () => {
           <input
             type="checkbox"
             name="dogGrooming"
-            checked={formData.services.dogGrooming}
+            checked={formData.services && formData.services.dogGrooming}
             onChange={handleCheckboxChange}
           />
           Dog grooming
@@ -70,7 +70,7 @@ export const DogAdditionalInfo = () => {
           <input
             type="checkbox"
             name="overnightCare"
-            checked={formData.services.overnightCare}
+            checked={formData.services && formData.services.overnightCare}
             onChange={handleCheckboxChange}
           />
           Dog overnight care
