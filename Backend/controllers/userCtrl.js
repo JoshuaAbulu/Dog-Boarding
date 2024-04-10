@@ -14,25 +14,27 @@ const createUser = asyncHandler(async (req, res) => {
     // Get the email from req.body
     const email = req.body.email;
 
-    const findUser = await User.findOne({ email: email });
+    // Check if password and confirmPassword match
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.status(400).json({ error: 'Passwords do not match' });
+    }
 
-  if (!findUser) {
-    /**
-     * TODO:if user not found user create a new user
-     */
-    const newUser = await User.create(req.body);
-    res.json(newUser);
+    // Check if the user already exists
+    const findUser = await User.findOne({ email: email });
+    if (!findUser) {
+      // If user not found, create a new user
+      const newUser = await User.create(req.body);
+      res.json(newUser);
     } else {
       // If the user already exists, send an error response
       res.status(400).json({ error: 'User already exists' });
     }
   } catch (error) {
-    // Handle Mongoose errors
-    console.error('Mongoose error:', error.message);
+    // Handle errors
+    console.error('Error:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 // Login a user
 const loginUserCtrl = asyncHandler(async (req, res) => {
@@ -52,10 +54,11 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     });
     res.json({
       _id: findUser?._id,
-      firstname: findUser?.firstname,
-      lastname: findUser?.lastname,
+      fullname: findUser?.fullname,
       email: findUser?.email,
       mobile: findUser?.mobile,
+      postalCode: findUser?.postalCode,
+      address: findUser?.address,
       token: generateToken(findUser?._id),
     });
   } else {
@@ -126,8 +129,7 @@ const updatedUser = asyncHandler(async (req, res) => {
   try {
     // Check if req.body exists before accessing its properties
     const updatedUserData = {
-      ...(req.body.firstname && { firstname: req.body.firstname }),
-      ...(req.body.lastname && { lastname: req.body.lastname }),
+      ...(req.body.fullname && { fullname: req.body.fullname }),
       ...(req.body.email && { email: req.body.email }),
       ...(req.body.mobile && { mobile: req.body.mobile }),
     };
