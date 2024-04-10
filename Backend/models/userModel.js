@@ -3,11 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
-    firstname:{
-        type:String,
-        required:true,
-    },
-    lastname:{
+    fullname:{
         type:String,
         required:true,
     },
@@ -21,17 +17,24 @@ var userSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
+    postalCode:{
+        type:String,
+        required:true,
+    },
+    address: [{
+        type: String
+    }],
     password:{
         type:String,
         required:true,
     },
-    description: {
-        type: String,
-        required: true,
+    confirmPassword:{
+        type:String,
+        required:true,
     },
     role: {
         type: String,
-        default: "petsitter",
+        default: "petowner",
     },
     isBlocked: {
         type:Boolean,
@@ -43,9 +46,7 @@ var userSchema = new mongoose.Schema({
           url: String,
         },
     ],
-    address: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Address" }],
-    },
+    
     wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     refreshToken: {
         type: String,
@@ -62,6 +63,15 @@ userSchema.pre("save", async function (next) {
     }
     const salt = await bcrypt.genSaltSync(10);
     this.password = await bcrypt.hash(this.password, salt);
+    next();
+  });
+
+  userSchema.pre("save", async function (next) {
+    if (!this.isModified("confirmPassword")) {
+      next();
+    }
+    const salt = await bcrypt.genSaltSync(10);
+    this.confirmPassword = await bcrypt.hash(this.confirmPassword, salt);
     next();
   });
 

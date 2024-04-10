@@ -28,7 +28,7 @@ var petsitterSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "user",
+      default: "petsitter",
     },
     isBlocked: {
       type: Boolean,
