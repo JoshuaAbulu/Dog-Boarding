@@ -16,16 +16,18 @@ const App = () => {
     <Router>
       <RegistrationProvider>
         <DogDataProvider>
-          <Routes>
-            <Route path="/" element={<SignUpForm />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/dog-registration" element={<DogRegistration />} />
-            <Route path="/dog-info" element={<DogInfo />} />
-            <Route path="/dog-info-screen" element={<DogInfoScreen />} />
-            <Route path="/additional-info" element={<DogAdditionalInfo />} />
-            <Route path="/details-page" element={<DetailsPage />} />
-            <Route path="/additional-details" element={<AdditionalDetails />} />
-          </Routes>
+          <div className="flex justify-center">
+            <Routes>
+              <Route path="/" element={<SignUpForm />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/dog-registration" element={<DogRegistration />} />
+              <Route path="/dog-info" element={<DogInfo />} />
+              <Route path="/dog-info-screen" element={<DogInfoScreen />} />
+              <Route path="/additional-info" element={<DogAdditionalInfo />} />
+              <Route path="/details-page" element={<DetailsPage />} />
+              <Route path="/additional-details" element={<AdditionalDetails />} />
+            </Routes>
+          </div>
         </DogDataProvider>
       </RegistrationProvider>
     </Router>
