@@ -132,6 +132,8 @@ const updatedUser = asyncHandler(async (req, res) => {
       ...(req.body.fullname && { fullname: req.body.fullname }),
       ...(req.body.email && { email: req.body.email }),
       ...(req.body.mobile && { mobile: req.body.mobile }),
+      ...(req.body.postalCode && { postalCode: req.body.postalCode }),
+      ...(req.body.address && { address: req.body.address }),
     };
 
     const updatedUser = await User.findByIdAndUpdate(
