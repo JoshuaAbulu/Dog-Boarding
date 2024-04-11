@@ -48,26 +48,33 @@ const SecondScreen = () => {
 
   return (
     <div>
-      <h2>Complete your registration for a seamless experience</h2>
+      <div className="form_header flex justify-center">
+        <h2 className=" text-center text-xl font-normal text-dogboarding-200 pb-6">Complete your registration for a seamless experience</h2>
+      </div>
+
       <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <input {...register("address")} placeholder="Address" />
-        {errors.address && <p>{errors.address.message}</p>}
+          <div className="form_fields flex flex-col gap-6">
+          <input {...register("address")} placeholder="Address" className="border-2 rounded-lg border-dogboarding-200 py-2 pl-2"/>
+          {errors.address && <p>{errors.address.message}</p>}
 
-        <input
-          type="password"
-          {...register("password")}
-          placeholder="Password"
-        />
-        {errors.password && <p>{errors.password.message}</p>}
+          <input
+            type="password"
+            {...register("password")}
+            placeholder="Password"
+            className="border-2 rounded-lg border-dogboarding-200 py-2 pl-2"
+          />
+          {errors.password && <p>{errors.password.message}</p>}
 
-        <input
-          type="password"
-          {...register("confirmPassword")}
-          placeholder="Confirm Password"
-        />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+          <input
+            type="password"
+            {...register("confirmPassword")}
+            placeholder="Confirm Password"
+            className="border-2 rounded-lg border-dogboarding-200 py-2 pl-2"
+          />
+          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
 
-        <button type="submit">Sign Up</button>
+          <button type="submit" className=" bg-dogboarding-300 py-2 rounded-lg">Sign Up</button>
+        </div>
       </form>
     </div>
   );
