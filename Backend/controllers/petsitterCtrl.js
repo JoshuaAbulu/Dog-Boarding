@@ -1,4 +1,4 @@
-const Petsitter = require("../models/petsittermodel");
+const Petsitter = require("../models/petsitterModel");
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
 const { generateRefreshToken } = require("../config/refreshtoken");
