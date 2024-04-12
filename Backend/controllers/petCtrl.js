@@ -2,7 +2,7 @@ const Pet = require("../models/petModel");
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
-const validateMongoDbId = require("../utils/validateMongoDbId");
+const validateMongoDbId = require("../utils/validateMongodbid");
 
 const createPet = asyncHandler(async (req, res) => {
   try {

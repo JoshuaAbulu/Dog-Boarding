@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
 const { generateRefreshToken } = require("../config/refreshtoken");
 const jwt = require("jsonwebtoken");
-const validateMongoDbId = require("../utils/validateMongoDbId");
+const validateMongoDbId = require("../utils/validateMongodbid");
 const createUser = asyncHandler(async (req, res) => {
   try {
     // Check if req.body is defined
