@@ -1,3 +1,29 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.input_field{
+    border-width: 2px;
+    border-radius: 8px;
+    border-color: rgb(58 58 58);
+    padding: 8px 0px 8px 8px;
+}
+.input_field_div{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.next_button{
+    background-color: #97E15F4D;
+    padding-top: 0.5rem/* 8px */;
+    padding-bottom: 0.5rem/* 8px */;
+    border-radius: 0.5rem/* 8px */;
+}
+.form_header{
+    align-self: center;
+    font-size: 1.25rem/* 20px */;
+    line-height: 1.75rem/* 28px */;
+    font-weight: 400;
+    color: rgb(58 58 58);
+    padding-bottom: 1.5rem/* 24px */;
+}

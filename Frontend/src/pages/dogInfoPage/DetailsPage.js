@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDogData } from "../../context/DogDataContext";
+import Header from "../../components/navbar/Header";
 
 export const DetailsPage = () => {
   const { formData, setFormData } = useDogData();
@@ -28,21 +29,25 @@ export const DetailsPage = () => {
   };
 
   return (
-    <div>
-      <h2>We're almost there; just a few more additional details to go</h2>
-      <p>What rate are you offering for this job</p>
-      <div>
-        <label>
-          $ 
-          <input
-            type="number"
-            value={rate}
-            onChange={handleRateChange}
-          />
-          / day
-        </label>
+    <div className="w-10/12">
+      <Header />
+
+      <h2 className="form_header">We're almost there; just a few more additional details to go</h2>
+      <div className="input_field_div">
+        <p>What rate are you offering for this job</p>
+
+          <label className="input_field">
+            $ 
+            <input
+              type="number"
+              value={rate}
+              onChange={handleRateChange}
+            />
+            / day
+          </label>
+        
+        <button onClick={handleNext} className="next_button">Next</button>
       </div>
-      <button onClick={handleNext}>Next</button>
     </div>
   );
 };

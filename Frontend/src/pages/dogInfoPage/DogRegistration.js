@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDogData } from "../../context/DogDataContext";
+import HeaderTwo from "../../components/navbar/HeaderTwo";
 
 export const DogRegistration = () => {
   const { formData, setFormData } = useDogData();
@@ -60,32 +61,36 @@ export const DogRegistration = () => {
   };
 
   return (
-    <div>
-      <h2>
+    <div className="w-10/12">
+      <HeaderTwo />
+      
+      <h2 className="form_header">
         Hello! First, let's get some basic info about your pet before we find
         the perfect dog sitter.
       </h2>
-      <div>
+
+      <div className="input_field_div">
         <input
           type="text"
           value={formData.pet.name}
           onChange={handleNameChange}
           placeholder="Enter pet name"
+          className="input_field"
         />
-      </div>
-      <div>
+
         <input
           type="date"
           value={formData.pet.birthday}
           onChange={handleBirthdayChange}
           placeholder="Select pet birthday"
+          className="input_field"
         />
-      </div>
-      <div>
+      
         <select
           value={formData.pet.breed}
           onChange={handleBreedChange}
           placeholder="Select a dog breed"
+          className="input_field"
         >
           <option value="">Select a breed</option>
           {breeds.map((breed, index) => (
@@ -94,8 +99,10 @@ export const DogRegistration = () => {
             </option>
           ))}
         </select>
+
+        <button onClick={handleNext} className="next_button">Next</button>
       </div>
-      <button onClick={handleNext}>Next</button>
+      
     </div>
   );
 };
