@@ -78,8 +78,13 @@ export const DogRegistration = () => {
           className="input_field"
         />
 
+        <label htmlFor="date" className="">
+          Select pet birthday
+        </label>
+
         <input
           type="date"
+          name="date"
           value={formData.pet.birthday}
           onChange={handleBirthdayChange}
           placeholder="Select pet birthday"
