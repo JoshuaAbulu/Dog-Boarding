@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDogData } from "../../context/DogDataContext";
+import Header from "../../components/navbar/Header";
 
 export const DogInfoScreen = () => {
   const navigate = useNavigate();
@@ -23,10 +24,12 @@ export const DogInfoScreen = () => {
   };
 
   return (
-    <div>
-      <h2>Where does {formData.pet.name} need a sitter?</h2>
-      <div>
-        <label>
+    <div className="w-10/12">
+      <Header />
+
+      <h2 className="form_header">Where does {formData.pet.name} need a sitter?</h2>
+      <div className="input_field_div">
+        <label className="input_field">
           <input
             type="radio"
             name="addressOption"
@@ -36,9 +39,8 @@ export const DogInfoScreen = () => {
           />
           Same as previous address
         </label>
-      </div>
-      <div>
-        <label>
+      
+        <label className="input_field">
           <input
             type="radio"
             name="addressOption"
@@ -54,10 +56,13 @@ export const DogInfoScreen = () => {
             name="address"
             value={formData.address}
             onChange={handleInputChange}
+            className="input_field"
           />
         )}
+
+        <button onClick={() => navigate("/additional-info")} className="next_button">Next</button>
       </div>
-      <button onClick={() => navigate("/additional-info")}>Next</button>
+  
     </div>
   );
 };

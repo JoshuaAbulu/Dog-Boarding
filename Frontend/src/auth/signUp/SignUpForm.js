@@ -43,7 +43,7 @@ const SignUpForm = () => {
   return (
     <div className="w-10/12 py-4">
       <div className="header flex justify-between">
-        <div className="back_arrow_div">
+        <div className="back_arrow_div cursor-pointer">
           <img src={backArrow} alt="back arrow" />
         </div>
         <img src={logo} alt="logo" />
