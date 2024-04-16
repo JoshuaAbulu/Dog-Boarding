@@ -21,12 +21,11 @@ export const DogDataProvider = ({ children }) => {
       overnightCare: false,
     },
     address: "",
-    details: {  
+    details: {
       rate: 0,
       headline: "",
       jobDescription: "",
     },
-
   });
 
   return (

@@ -39,7 +39,7 @@ export const AdditionalDetails = () => {
     try {
     //   await axios.post("", formData);
       console.log(formData);
-      navigate("/next-page");
+      navigate("/petsitter1");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
