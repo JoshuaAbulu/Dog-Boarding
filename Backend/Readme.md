@@ -1,6 +1,8 @@
 sample on How to create an account
 
+
 {
+
   "fullname": "firstname lastname",
   "email": "emailexample@gmail.com",
   "mobile": "0816003****",
@@ -13,8 +15,9 @@ sample on How to create an account
 
 sample on How to login to an account
 
+
 {
-  "email": "samueladeleke@gmail.com",
+  "email": "samuelleke@gmail.com",
   "password": "password"
 }
 
