@@ -28,7 +28,7 @@ sample on How to login to an account
 
 {
 
-  "email": "samuelleke@gmail.com",
+  "email": "emailexample@gmail.com",
   
   "password": "password"
   
