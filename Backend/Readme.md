@@ -16,6 +16,7 @@ sample on How to create an account
   "password": "password",
   
   "confirmPassword": "password"
+  
 }
 
 
@@ -26,9 +27,11 @@ sample on How to login to an account
 
 
 {
+
   "email": "samuelleke@gmail.com",
   
   "password": "password"
+  
 }
 
 
