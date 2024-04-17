@@ -8,7 +8,7 @@ import DogInfo from "./pages/dogInfoPage/DogInfo";
 import { DogInfoScreen } from "./pages/dogInfoPage/DogInfoScreen";
 import { DogAdditionalInfo } from "./pages/dogInfoPage/AdditionalInfo";
 import SignUpForm from "./auth/signUp/SignUpForm";
-import LoginPage from "./auth/Login/Login";
+import Login from "./auth/Login/Login";
 import { DetailsPage } from "./pages/dogInfoPage/DetailsPage";
 import { AdditionalDetails } from "./pages/dogInfoPage/AdditionalDetails";
 import { Home } from "./home/Home";
@@ -17,6 +17,9 @@ import { PetSitterPricing } from "./pages/petsitterInfoPage/PetSitterPricing";
 import { PetSitterDetails } from "./pages/petsitterInfoPage/PetSitterDetails";
 import { PetSitterInfo1 } from "./pages/petsitterInfoPage/PetSitterInfo1";
 import { PetSitterInfo2 } from "./pages/petsitterInfoPage/PetSitterInfo2";
+
+
+
 
 const App = () => {
   return (
@@ -27,7 +30,7 @@ const App = () => {
           <div className="flex justify-center">
             <Routes>
               <Route path="/" element={<SignUpForm />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/dog-registration" element={<DogRegistration />} />
               <Route path="/dog-info" element={<DogInfo />} />
               <Route path="/dog-info-screen" element={<DogInfoScreen />} />
