@@ -65,7 +65,7 @@ const PetSitterLogin = ({ toggleLoginType }) => {
   return (
     <div className="w-10/12">
       <Header />
-      <h2 className="form_header">Welcome back, pawsome pet parent!</h2>
+      <h2 className="form_header">Welcome back! paw-sitive furry friend! !</h2>
       <div className="input_field_div">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input {...register("email")} type="email" placeholder="Email" className="input_field my-2" />
